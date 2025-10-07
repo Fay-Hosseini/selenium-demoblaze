@@ -1,6 +1,5 @@
 import os
 
-import pytest
 from pages.login_page import LoginPage
 
 USERNAME = os.environ.get("DEMOBLAZE_USERNAME")

@@ -1,5 +1,8 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.base_page import BasePage
 
 class LoginPage(BasePage):
@@ -23,4 +26,20 @@ class LoginPage(BasePage):
         # wait until text contains "Welcome"
         self.wait.until(lambda d: element.text.startswith("Welcome"))
         return element.text
+
+    def get_failed_user(self):
+        """
+        Waits for the error message and returns its text.
+        Used when login fails due to invalid username or password.
+        """
+        # Wait for JavaScript alert to appear
+        WebDriverWait(self.driver, 10).until(EC.alert_is_present())
+        alert = self.driver.switch_to.alert
+        alert_text = alert.text
+        alert.accept()  # close the alert
+        return alert_text
+
+
+
+
 

@@ -1,5 +1,3 @@
-Python
-Google Chrome
-ChromeDriver
-Selenium
-Pytest
+selenium
+pytest
+webdriver-manager
